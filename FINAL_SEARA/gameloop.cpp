@@ -21,7 +21,7 @@ enum eDirection { STOP = 0, LEFT, RIGHT, UP, DOWN };
 eDirection dir;
 
 bool gameover;
-bool winner;
+bool isWinner;
 int score;
 
 struct SnakeTail
@@ -29,7 +29,7 @@ struct SnakeTail
 	Vector2 pos;
 };
 
-SnakeTail tail[100];
+SnakeTail tail[360];
 int nTail;
 
 int fruitX;
@@ -65,7 +65,7 @@ void gameStart()
 			exit(NULL);
 			break;
 		case Scenes::gameOver:
-			if (winner == true)
+			if (isWinner == true)
 			{
 				winningPopUp();
 			}
@@ -108,7 +108,7 @@ void init()
 
 	for (int i = 0; i < nTail; i++)
 	{
-		tail[i].pos = { x, y + i };
+		tail[i].pos = { x, y + i }; // Se crean las primeras partes de la cola
 	}
 }
 void input()
@@ -261,7 +261,7 @@ void gameUpdate()
 	if (score == 3500)
 	{
 		gameover = true;
-		winner = true;
+		isWinner = true;
 	}
 
 }
